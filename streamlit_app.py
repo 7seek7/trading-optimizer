@@ -120,10 +120,34 @@ class OptimizerUI:
 
         self.api_source = st.sidebar.selectbox(
             "AI服务提供商",
-            ["OpenAI", "通义千问", "DeepSeek"]
+            ["NVIDIA API (推荐)", "DeepSeek", "通义千问", "OpenAI"],
+            help="推荐使用NVIDIA NIM API：GPU加速，模型丰富，API稳定"
         )
 
-        if self.api_source == "OpenAI":
+        if self.api_source == "NVIDIA API (推荐)":
+            self.api_key = st.sidebar.text_input(
+                "API密钥 (NVAPI-开头)",
+                type="password",
+                value="nvapi-",
+                help="输入你的NVIDIA NGC API Key，格式: nvapi-xxxxxxxxxxxxx"
+            )
+            self.api_base = st.sidebar.text_input(
+                "API基础URL",
+                value="https://integrate.api.nvidia.com/v1",
+                help="NVIDIA NIM API地址"
+            )
+            self.model = st.sidebar.selectbox(
+                "模型（推荐交易优化）",
+                [
+                    "deepseek-ai/deepseek-v3 (推荐 - 中文优化)",
+                    "meta/llama-3.1-8b-instruct (速度快)",
+                    "meta/llama-3.1-70b-instruct (高质量)",
+                    "mistralai/mistral-7b-instruct (通用)",
+                    "qwen/qwen2.5-7b-instruct (中文优化)"
+                ],
+                help="推荐使用deepseek-v3进行交易优化"
+            )
+        elif self.api_source == "OpenAI":
             self.api_key = st.sidebar.text_input(
                 "API密钥",
                 type="password",
@@ -166,7 +190,8 @@ class OptimizerUI:
             )
             self.model = st.sidebar.selectbox(
                 "模型",
-                ["deepseek-chat", "deepseek-reasoner"]
+                ["deepseek-chat", "deepseek-reasoner", "deepseek-coder"],
+                help="deepseek-chat: 通用推理; deepseek-reasoner: 复杂推理"
             )
 
     def render_storage_info(self):
