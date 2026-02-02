@@ -1,0 +1,38 @@
+# Platform Deployment - Complete Trading Bot Parameter Optimizer Dependencies
+
+# Core Data & Analysis
+pandas>=2.1.0
+numpy>=1.26.0
+
+# Binance API (for data download)
+python-binance>=1.0.19
+
+# Telegram Bot (optional - for alerts, not required for optimization)
+python-telegram-bot>=20.7
+
+# Environment Configuration
+python-dotenv>=1.0.0
+
+# HTTP Client
+requests>=2.31.0
+aiohttp>=3.9.0
+
+# Scheduling (if needed for long-running tasks)
+schedule>=1.2.0
+
+# Visualization (optional - for result charts)
+matplotlib>=3.7.0
+
+# Streamlit (Web Interface)
+streamlit>=1.28.0
+
+# Streamlit Additional Dependencies
+altair
+pydeck
+watchdog
+
+# OpenAI API (for AI optimization)
+openai>=1.3.0
+
+# Additional utilities
+tiktoken
